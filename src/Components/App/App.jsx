@@ -6,10 +6,13 @@ class App extends Component {
     name: "",
   };
 
-    stateContactsChange = (event) => {
-      event.preventDefault();
-    console.log(event);
-    console.log(this.props);
+  handleSubmit = (event) => {
+    const form = event.target;
+    event.preventDefault();
+    
+    console.log(event.target[0].value);
+    console.log(this.state);
+    form.reset();
   };
 
   render() {
@@ -17,7 +20,7 @@ class App extends Component {
       <>
         <h1>Phonebook</h1>
         <div className="phonebook">
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <label>
               <input
                 type="text"
@@ -27,7 +30,7 @@ class App extends Component {
                 required
               />
             </label>
-            <button onSubmit={this.stateContactsChange} type="submit">add contact</button>
+            <button type="submit">add contact</button>
           </form>
         </div>
         <div className="contacts"></div>
