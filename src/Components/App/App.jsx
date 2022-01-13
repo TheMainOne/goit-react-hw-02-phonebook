@@ -8,9 +8,11 @@ class App extends Component {
 
   handleSubmit = (event) => {
     const form = event.target;
+    const valueOfInput = event.target[0].value;
     event.preventDefault();
     
-    console.log(event.target[0].value);
+    this.setState({contacts: valueOfInput})
+    console.log(valueOfInput);
     console.log(this.state);
     form.reset();
   };
