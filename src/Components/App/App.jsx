@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 
 class App extends Component {
   state = {
     contacts: [],
     name: "",
-    number: ""
+    number: "",
   };
 
   handleSubmit = (event) => {
     const form = event.target;
-    const valueOfInput = event.target[0].value;
+    const contactName = event.target[0].value;
+    const contactPhone = event.target[1].value
     event.preventDefault();
-    
-    this.setState({ contacts: [...this.state.contacts, valueOfInput] })
-    console.log(this.state);
+
+    this.setState({ contacts: [...this.state.contacts, contactName], number: contactPhone });
+    console.log(this.state.number);
     form.reset();
   };
 
@@ -25,6 +26,7 @@ class App extends Component {
         <div className="phonebook">
           <form onSubmit={this.handleSubmit}>
             <label>
+              write your name here
               <input
                 type="text"
                 name="name"
@@ -33,12 +35,26 @@ class App extends Component {
                 required
               />
             </label>
+            <label>
+              write your phone here
+              <input
+                type="tel"
+                name="number"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
+              />
+            </label>
             <button type="submit">add contact</button>
           </form>
         </div>
         <div className="contacts">
           <ul>
-            {this.state.contacts ? this.state.contacts.map(contact => <li key={nanoid()}>{contact}</li>) : false}
+            {this.state.contacts
+              ? this.state.contacts.map((contact) => (
+                <li key={nanoid()}>{contact} - { this.state.number}</li>
+                ))
+              : false}
           </ul>
         </div>
       </>
