@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { nanoid } from 'nanoid'
 
 class App extends Component {
   state = {
     contacts: [],
     name: "",
+    number: ""
   };
 
   handleSubmit = (event) => {
@@ -11,8 +13,7 @@ class App extends Component {
     const valueOfInput = event.target[0].value;
     event.preventDefault();
     
-    this.setState({contacts: valueOfInput})
-    console.log(valueOfInput);
+    this.setState({ contacts: [...this.state.contacts, valueOfInput] })
     console.log(this.state);
     form.reset();
   };
@@ -35,7 +36,11 @@ class App extends Component {
             <button type="submit">add contact</button>
           </form>
         </div>
-        <div className="contacts"></div>
+        <div className="contacts">
+          <ul>
+            {this.state.contacts ? this.state.contacts.map(contact => <li key={nanoid()}>{contact}</li>) : false}
+          </ul>
+        </div>
       </>
     );
   }
