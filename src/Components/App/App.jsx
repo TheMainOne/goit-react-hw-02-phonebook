@@ -14,8 +14,9 @@ class App extends Component {
     const contactPhone = event.target[1].value
     event.preventDefault();
 
-    this.setState({ contacts: [...this.state.contacts, contactName], number: contactPhone });
-    console.log(this.state.number);
+    this.setState({ contacts: [...this.state.contacts, { name: contactName, number: contactPhone }] });
+
+    console.log(this.state);
     form.reset();
   };
 
@@ -51,8 +52,8 @@ class App extends Component {
         <div className="contacts">
           <ul>
             {this.state.contacts
-              ? this.state.contacts.map((contact) => (
-                <li key={nanoid()}>{contact} - { this.state.number}</li>
+              ? this.state.contacts.map(({name, number}) => (
+                <li key={nanoid()}>{name} - {number} </li>
                 ))
               : false}
           </ul>
