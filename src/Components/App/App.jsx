@@ -53,7 +53,7 @@ class App extends Component {
           <ul>
             {this.state.contacts
               ? this.state.contacts.map(({name, number}) => (
-                <li key={nanoid()}>{name} - {number} </li>
+                <li key={nanoid()}>{name}: {number} </li>
                 ))
               : false}
           </ul>
