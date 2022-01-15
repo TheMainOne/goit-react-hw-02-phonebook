@@ -1,7 +1,8 @@
 import React from "react";
+import { Input } from "./Filter.styled";
 
 const Filter = ({ onSearchInput, value }) => {
-  return <input type="text" value={value} onChange={onSearchInput} />;
+  return <Input type="text" value={value} onChange={onSearchInput} />;
 };
 
 export default Filter;

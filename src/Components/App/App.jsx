@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 import Contacts from "../Contacts/Contacts";
 import ContactForm from "../ContactForm/ContactForm";
 import Filter from "../Filter/Filter";
+import { Wrapper } from "./App.styled";
+import { GlobalStyle } from "./App.styled";
 
 class App extends Component {
   state = {
@@ -25,7 +27,7 @@ class App extends Component {
     event.preventDefault();
 
     if (isNameInContacts) {
-      alert(`${contactName} is already in contacts`);
+      alert(`${contactName} has been added already`);
       form.reset();
       return;
     }
@@ -70,7 +72,7 @@ class App extends Component {
     const filteredContacts = this.getFilteredContacts();
 
     return (
-      <>
+      <Wrapper>
         <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.onHandleSubmit} />
         <h2>Contacts</h2>
@@ -80,7 +82,8 @@ class App extends Component {
           filteredContacts={filteredContacts}
           deleteContact={this.deleteContact}
         />
-      </>
+        <GlobalStyle />
+      </Wrapper>
     );
   }
 }

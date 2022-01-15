@@ -1,4 +1,6 @@
 import React from "react";
+import { List } from "./Contacts.styled";
+import { Button } from "./Contacts.styled";
 
 const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
   return (
@@ -6,7 +8,7 @@ const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
       {contacts.length === 0 ? (
         <p>No contacts added yet</p>
       ) : (
-        <ul>
+        <List>
           {filteredContacts.length === 0 ? (
             <p>Contact not found</p>
           ) : (
@@ -15,11 +17,11 @@ const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
                 <p>
                   {contact.name}: {contact.number}
                 </p>
-                <button onClick={() => deleteContact(contact.id)}>delete</button>
+                <Button onClick={() => deleteContact(contact.id)}>delete</Button>
               </li>
             ))
           )}
-        </ul>
+        </List>
       )}
     </div>
   );
