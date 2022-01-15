@@ -14,4 +14,7 @@ export const Button = styled.button`
   background: #a4b9d8;
   width: 80px;
   height: 40px;
+  font-family: cursive;
+  font-weight: bold;
+  color: #545252;
 `;

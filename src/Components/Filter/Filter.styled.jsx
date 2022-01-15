@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
+width: 215px;
 padding: 10px;
 border: 2px solid #a6a6a6;
     border-radius: 4px;
