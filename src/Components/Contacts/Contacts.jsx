@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contacts = ({ contacts, filteredContacts }) => {
+const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
   return (
     <div>
       {contacts.length === 0 ? (
@@ -15,6 +15,7 @@ const Contacts = ({ contacts, filteredContacts }) => {
                 <p>
                   {contact.name}: {contact.number}
                 </p>
+                <button onClick={() => deleteContact(contact.id)}>delete</button>
               </li>
             ))
           )}

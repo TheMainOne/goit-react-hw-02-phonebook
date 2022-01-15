@@ -20,7 +20,8 @@ class App extends Component {
     const contactName = event.target[0].value;
     const contactPhone = event.target[1].value;
     const isNameInContacts = this.state.contacts.find(
-      element => element.name === contactName);
+      (element) => element.name === contactName
+    );
     event.preventDefault();
 
     if (isNameInContacts) {
@@ -28,7 +29,6 @@ class App extends Component {
       form.reset();
       return;
     }
-
 
     this.setState((prevState) => {
       return {
@@ -51,12 +51,19 @@ class App extends Component {
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(
+    const filteredContacts = contacts.filter(
       (contact) =>
         contact.name.toLowerCase().includes(normalizedFilter) ||
         contact.number.includes(normalizedFilter)
     );
+    
+    return filteredContacts;
+  }
+
+  deleteContact = (id) => {
+    const contacts = this.getFilteredContacts().filter((contact) => contact.id !== id);
+
+    this.setState({ contacts });
   };
 
   render() {
@@ -71,6 +78,7 @@ class App extends Component {
         <Contacts
           contacts={this.state.contacts}
           filteredContacts={filteredContacts}
+          deleteContact={this.deleteContact}
         />
       </>
     );
