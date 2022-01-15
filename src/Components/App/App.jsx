@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { nanoid } from "nanoid";
 import Contacts from "../Contacts/Contacts";
+import ContactForm from "../ContactForm/ContactForm";
+import Filter from "../Filter/Filter";
 
 class App extends Component {
   state = {
@@ -11,15 +13,22 @@ class App extends Component {
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
     filter: "",
-    name: "",
-    number: "",
   };
 
   onHandleSubmit = (event) => {
     const form = event.target;
     const contactName = event.target[0].value;
     const contactPhone = event.target[1].value;
+    const isNameInContacts = this.state.contacts.find(
+      element => element.name === contactName);
     event.preventDefault();
+
+      console.log(isNameInContacts);
+    if (isNameInContacts) {
+      alert(`${contactName} is already in contacts`);
+      return;
+    }
+
 
     this.setState((prevState) => {
       return {
@@ -56,40 +65,13 @@ class App extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-        <div className="phonebook">
-          <form onSubmit={this.onHandleSubmit}>
-            <label>
-              write your name here
-              <input
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-              />
-            </label>
-            <label>
-              write your phone here
-              <input
-                type="tel"
-                name="number"
-                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                required
-              />
-            </label>
-            <button type="submit">add contact</button>
-          </form>
-        </div>
-        <div className="contacts">
-          <input
-            type="text"
-            value={this.state.filter}
-            onChange={this.onSearchInput}
-          />
-
-          <Contacts contacts={this.state.contacts} filteredContacts={filteredContacts}></Contacts>
-        </div>
+        <ContactForm handleSubmit={this.onHandleSubmit} />
+        <h2>Contacts</h2>
+        <Filter onSearchInput={this.onSearchInput} value={this.state.filter} />
+        <Contacts
+          contacts={this.state.contacts}
+          filteredContacts={filteredContacts}
+        />
       </>
     );
   }

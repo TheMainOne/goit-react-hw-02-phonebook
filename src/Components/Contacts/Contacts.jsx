@@ -1,6 +1,6 @@
 import React from "react";
 
-function Contacts({ contacts, filteredContacts }) {
+const Contacts = ({ contacts, filteredContacts }) => {
   return (
     <div>
       {contacts.length === 0 ? (
