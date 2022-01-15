@@ -23,9 +23,9 @@ class App extends Component {
       element => element.name === contactName);
     event.preventDefault();
 
-      console.log(isNameInContacts);
     if (isNameInContacts) {
       alert(`${contactName} is already in contacts`);
+      form.reset();
       return;
     }
 
