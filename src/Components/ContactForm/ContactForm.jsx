@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Input, Label } from "./ContactForm.styled";
 
-const ContactForm = ({ handleSubmit }) => {
+const ContactForm = ({ handleSubmit, contactId, numberId }) => {
   return (
     <Form onSubmit={handleSubmit}>
-      <Label>
+      <Label htmlFor={contactId}>
         Write your name here
         <Input
           type="text"
@@ -15,7 +15,7 @@ const ContactForm = ({ handleSubmit }) => {
           required
         />
       </Label>
-      <Label>
+      <Label htmlFor={numberId}>
         Write your phone here
         <Input
           type="tel"

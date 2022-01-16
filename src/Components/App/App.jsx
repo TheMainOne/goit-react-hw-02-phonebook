@@ -73,13 +73,19 @@ class App extends Component {
 
   render() {
     const filteredContacts = this.getFilteredContacts();
+    const contactId = nanoid();
+    const numberId = nanoid();
 
     return (
       <Wrapper>
         <Header></Header>
-        <ContactForm handleSubmit={this.onHandleSubmit} />
+        <ContactForm
+          contactId={contactId}
+          numberId={numberId}
+          handleSubmit={this.onHandleSubmit}
+        />
         <SecondHeader>Contacts</SecondHeader>
-          <Filter onSearchInput={this.onSearchInput} value={this.state.filter} />
+        <Filter onSearchInput={this.onSearchInput} value={this.state.filter} />
         <Contacts
           contacts={this.state.contacts}
           filteredContacts={filteredContacts}
