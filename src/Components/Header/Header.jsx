@@ -6,6 +6,6 @@ export const Header = () => {
 };
 
 export const SecondHeader = () => {
-  return <SecondHead>Phonebook</SecondHead>;
+  return <SecondHead>Contacts</SecondHead>;
 };
 
