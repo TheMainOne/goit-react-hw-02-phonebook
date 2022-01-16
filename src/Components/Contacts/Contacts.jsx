@@ -1,6 +1,6 @@
 import React from "react";
-import { List } from "./Contacts.styled";
-import { Button } from "./Contacts.styled";
+import PropTypes from "prop-types";
+import { List, Button, ListItem } from "./Contacts.styled";
 
 const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
   return (
@@ -12,19 +12,39 @@ const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
           {filteredContacts.length === 0 ? (
             <p>Contact not found</p>
           ) : (
-            filteredContacts.map(contact => (
-              <li key={contact.id}>
+            filteredContacts.map((contact) => (
+              <ListItem key={contact.id}>
                 <p>
                   {contact.name}: {contact.number}
                 </p>
-                <Button onClick={() => deleteContact(contact.id)}>delete</Button>
-              </li>
+                <Button onClick={() => deleteContact(contact.id)}>
+                  delete
+                </Button>
+              </ListItem>
             ))
           )}
         </List>
       )}
     </div>
   );
-}
+};
+
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  filteredContacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  deleteContact: PropTypes.func.isRequired,
+};
 
 export default Contacts;

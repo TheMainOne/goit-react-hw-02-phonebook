@@ -1,7 +1,11 @@
 import React from "react";
+import { Head, SecondHead } from "./Header.styled";
 
-const Header = () => (
- <h1>Phonebook</h1>
-);
+export const Header = () => {
+  return <Head>Phonebook</Head>;
+};
 
-export default Header;
+export const SecondHeader = () => {
+  return <SecondHead>Phonebook</SecondHead>;
+};
+

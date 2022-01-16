@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { nanoid } from "nanoid";
+import { Header, SecondHeader } from "../Header/Header";
 import Contacts from "../Contacts/Contacts";
 import ContactForm from "../ContactForm/ContactForm";
 import Filter from "../Filter/Filter";
@@ -58,12 +59,14 @@ class App extends Component {
         contact.name.toLowerCase().includes(normalizedFilter) ||
         contact.number.includes(normalizedFilter)
     );
-    
+
     return filteredContacts;
-  }
+  };
 
   deleteContact = (id) => {
-    const contacts = this.getFilteredContacts().filter((contact) => contact.id !== id);
+    const contacts = this.getFilteredContacts().filter(
+      (contact) => contact.id !== id
+    );
 
     this.setState({ contacts });
   };
@@ -73,10 +76,10 @@ class App extends Component {
 
     return (
       <Wrapper>
-        <h1>Phonebook</h1>
+        <Header></Header>
         <ContactForm handleSubmit={this.onHandleSubmit} />
-        <h2>Contacts</h2>
-        <Filter onSearchInput={this.onSearchInput} value={this.state.filter} />
+        <SecondHeader>Contacts</SecondHeader>
+          <Filter onSearchInput={this.onSearchInput} value={this.state.filter} />
         <Contacts
           contacts={this.state.contacts}
           filteredContacts={filteredContacts}
