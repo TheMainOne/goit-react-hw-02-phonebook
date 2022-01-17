@@ -10,10 +10,10 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
 `;
 
 export const Button = styled.button`
@@ -27,4 +27,8 @@ export const Button = styled.button`
   font-family: cursive;
   font-weight: bold;
   color: #545252;
+`;
+
+export const Notification = styled.p`
+  text-align: center;
 `;

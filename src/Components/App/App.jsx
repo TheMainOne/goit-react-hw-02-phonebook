@@ -20,8 +20,8 @@ class App extends Component {
 
   onHandleSubmit = (event) => {
     const form = event.target;
-    const contactName = event.target[0].value;
-    const contactPhone = event.target[1].value;
+    const contactName = event.target.elements.name.value;
+    const contactPhone = event.target.elements.number.value;
     const isNameInContacts = this.state.contacts.find(
       (element) => element.name === contactName
     );
@@ -64,11 +64,14 @@ class App extends Component {
   };
 
   deleteContact = (id) => {
-    const contacts = this.getFilteredContacts().filter(
-      (contact) => contact.id !== id
-    );
-
-    this.setState({ contacts });
+    this.setState((prevState) => {
+      const newContacts = prevState.contacts.filter(
+        (contact) => contact.id !== id
+      );
+      return {
+        contacts: [...newContacts],
+      };
+    });
   };
 
   render() {
@@ -78,7 +81,7 @@ class App extends Component {
 
     return (
       <Wrapper>
-        <Header></Header>
+        <Header />
         <ContactForm
           contactId={contactId}
           numberId={numberId}

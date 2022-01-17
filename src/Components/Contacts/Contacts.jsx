@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { List, Button, ListItem } from "./Contacts.styled";
+import { List, Button, ListItem, Notification } from "./Contacts.styled";
 
 const Contacts = ({ contacts, filteredContacts, deleteContact }) => {
   return (
     <div>
       {contacts.length === 0 ? (
-        <p>No contacts added yet</p>
+        <Notification>No contacts added yet</Notification>
       ) : (
         <List>
           {filteredContacts.length === 0 ? (
