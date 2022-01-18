@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { nanoid } from "nanoid";
+import toast, { Toaster } from 'react-hot-toast';
 import { Header, SecondHeader } from "../Header/Header";
 import Contacts from "../Contacts/Contacts";
 import ContactForm from "../ContactForm/ContactForm";
@@ -28,7 +29,9 @@ class App extends Component {
     event.preventDefault();
 
     if (isNameInContacts) {
-      alert(`${contactName} has been added already`);
+      const notify = () => toast.error(`${contactName} has been added already`);
+
+      notify()
       form.reset();
       return;
     }
@@ -95,6 +98,7 @@ class App extends Component {
           deleteContact={this.deleteContact}
         />
         <GlobalStyle />
+              <Toaster />
       </Wrapper>
     );
   }
